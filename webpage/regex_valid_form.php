@@ -12,7 +12,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$text=$_POST["text"];
 	$replaceText=$_POST["replaceText"];
 
-	$replacedText=preg_replace($pattern, $replaceText, $text);
+    $replacedText=preg_replace("/[^0-9,.]]/", "", $text);
+	#$replacedText=preg_replace("/ /", "", $text);      removes the whitespaces from a string
+	
+	#$replacedText=preg_replace("/[^0-9,.]/", "", $text);      removes nonnumeric characters except comma and dot
+
+	#$replacedText=preg_replace("/\n/", "", $text);   removes new lines (characters) from a string.
+
 
 	if(preg_match($pattern, $text)) {
 						$match="Match!";
